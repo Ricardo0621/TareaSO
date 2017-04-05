@@ -18,4 +18,4 @@ Aunque el hecho de apoyarse en la funcion fork para dividir el problema especifi
   
 Algunos factores por los cuales ésto sucede prodrian deberse a la Arquitectura del computador en el que se está trabajando, a la forma en la que éste maneja las interreupciones y al Sistema operativo utilizado.  
   
-Por ejemplo: Al ejecutar el iofork en un computador con Windows usando cygwin se registro un tiempo promedio de 105 segundos. Mientras que al ejecutar en un computador con Linux, tardaba en promedio 88 segundos.
+Por ejemplo: Al ejecutar el iofork en un computador con Windows usando cygwin se registro un tiempo promedio de 105 segundos. Mientras que al ejecutarlo en un computador con Linux, tardaba en promedio 88 segundos.
