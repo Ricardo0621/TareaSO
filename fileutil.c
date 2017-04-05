@@ -29,11 +29,11 @@ int cantidadElementos(char *directorio) {
     return length;
 }
 
-//concatenar: Recibe un directorio y el nombre un archivo y los concatena  
+//concatenar: Recibe un directorio, el nombre de un archivo y los concatena  
 char *concatenar(char *directorio, char* nombre)
 {
 	char* aux; //Variable utilizada para concatenar
-	aux = malloc(strlen(directorio) + 1 + strlen(nombre)); //Reservamos memoria suficinete para el directorio,el nombre del archivo y el caracter "/" 
+	aux = malloc(strlen(directorio) + 1 + strlen(nombre)); //Reservamos memoria suficiente para el directorio,el nombre del archivo y el caracter "/" 
     strcpy(aux, directorio); //Copiamos el directorio a la variable auxiliar
     strcat(aux, "/"); //concatenamos el caracter "/" a la varibale auxiliar
     strcat(aux, nombre); //concatenamos el nombre del archivo a la varibale auxiliar
@@ -49,22 +49,22 @@ void reservarEspacio(char **arreglo, int length)
 
 //listaArchivos: Recibe un directorio y la cantidad de sus elementos y retorna un arreglo lleno con la ruta de los archivos presentes en el directorio
 char ** listaArchivos(char *directorio, int length) { 
-    DIR *d;
-    d = opendir(directorio);
-    int it = 0;
-    struct dirent *dir;
-    char ** arrayAux;
-    arrayAux = malloc(length * sizeof (char*)); 
-    reservarEspacio(arrayAux, length); 
-    if (d) {
-        while ((dir = readdir(d)) != NULL) { 
-            if (dir->d_type != DT_DIR) { 
-                char *temp = concatenar(directorio, dir->d_name);
-                strcpy(arrayAux[it], temp);
-                it++;
+    DIR *d; //A a una variable de tipo dir
+    d = opendir(directorio); //Abrimos el directorio
+    int it = 0; //Variable iteradora
+    struct dirent *dir; //Estructura de tipo dirent
+    char ** arrayAux; //Arreglo que va contener las rutas de los archivos en un directorio especifico
+    arrayAux = malloc(length * sizeof (char*)); //Reservamos el espacio de memoria correspondiente a la cantidad de elementos en el directorio
+    reservarEspacio(arrayAux, length);  //Llamada a la funcion reservarEspacio
+    if (d) { //Si la ruta corresponde a un directorio
+        while ((dir = readdir(d)) != NULL) { //Mientras que se pueda leer
+            if (dir->d_type != DT_DIR) { //Si el tipo del elemento corresponde a un archivo
+                char *temp = concatenar(directorio, dir->d_name); //Llamamos a la funcion concatenar y le pasamos como entrada el directorio y el nombre del archivo encontrado
+                strcpy(arrayAux[it], temp); //copiamos toda la ruta dentro del arreglo
+                it++; //Aumentamos la variable iteradora
             }
         }
-        closedir(d); 
+        closedir(d); //Cerramos el directorio
     } else
         printf("La ruta especificada no corresponde a un directorio");
     return arrayAux;

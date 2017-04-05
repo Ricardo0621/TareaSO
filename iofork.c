@@ -11,7 +11,7 @@ int main(int argc, char** argv) {
     arrayFinal = listaArchivos(fichero, length);         
     int fd[2];
     long tamPadre = 0;
-	//Se apoya en fork para dividir la tarea de contar el tamano de cada elemento el el arreglo con contiene las rutas de los archivos en el directorio    
+	//Se apoya en fork para dividir la tarea de contar el tamano de cada elemento en el arreglo con contiene las rutas de los archivos en el directorio    
 	pipe(fd);
     int pid;
     if ((pid = fork())) {

@@ -7,7 +7,7 @@ int main(int argc, char** argv) {
     char **arrayFinal;
     char *fichero = argv[1]; //fichero pasado por consola
     long size = 0;
-    int length = cantidadElementos(fichero); //calcula el tamaño del archivo
+    int length = cantidadElementos(fichero); //calcula la cantidad de elementos del archivo
     arrayFinal = malloc(length * sizeof (char*));
     arrayFinal = listaArchivos(fichero, length); //retorna el arreglo con la ruta de cada archivo presente        
     for (int j = 0; j < length; j++){
